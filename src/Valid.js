@@ -6,7 +6,7 @@ function Valid({username, password, password_again, nickname, imageType})
         password_again === "" || nickname === "" || imageType === "")
     {
         return (
-            <h1>All fields are mandatory.</h1>
+            <h1>All fields are required.</h1>
         );
     }
     // Validity check for username
