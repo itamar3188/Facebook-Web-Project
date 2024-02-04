@@ -19,9 +19,10 @@ function Login()
                     <input type="password" id="password" name="password" placeholder='Password' required/>
                     <img src={password_icon} alt="Password Icon"/>
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" className="button">Login</button>
+                <Link to='/Register' className="button" id="Register">Register</Link>
             </form>
-            <Link to='/Register'>Register</Link>
+
         </div>
     );
 };

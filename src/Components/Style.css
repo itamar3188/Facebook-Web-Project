@@ -1,8 +1,11 @@
+body{
+    background-color: aliceblue;
+}
 .wrapper {
     width: 420px;
     background: white;
    color: black;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 .wrapper h1 {
@@ -31,34 +34,24 @@ input-box{
     outline: none;
     border: 1px solid rgb(0,15,250);
     font-size: 16px;
-
     border-radius: 40px;
 }
-.wrapper .remember-forgot{
-    display: flex;
-    justify-content: space-between;
-    font-size: 14.5px;
-    margin: -15px 0 15px;
-}
 
-.remember-forgot a {
-    text-decoration: none;
-}
-.remember-forgot a:hover{
-    text-decoration: underline;
-}
-button {
-
-    width: 100%;
+.button {
+    width: 50%;
+    text-align: center;
     background-color: #007bff; /* Your preferred background color */
     color: #fff; /* Your preferred text color */
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 30px; /* Adjust padding as needed */
     border: none;
-    border-radius: 40px; /* Optional: Add rounded corners */
+    border-radius: 30px; /* Optional: Add rounded corners */
     cursor: pointer;
+    text-decoration: none;
+    margin: 5px;
+    font-size: 20px;
 }
 
-button:hover {
+.button:hover {
     background-color: #0056b3; /* Change the background color on hover */
 }
 
@@ -70,8 +63,13 @@ button:hover {
     text-decoration: none;
 
 }
-.register-link p a:hover {
-    text-decoration: underline;
+#Register
+{
+    background-color: green;
+}
+#Login
+{
+    background-color: green;
 }
 
 

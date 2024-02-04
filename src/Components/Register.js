@@ -47,25 +47,20 @@ function Register() {
   };
 
   return (
-      <div className="App">
-        <header className="App-header">
+      <div className='wrapper'>
           <form>
-            <label>Username:</label>
-            <br></br>
-            <input type="text" id="username"></input>
-            <br></br>
-            <label>Password:</label>
-            <br></br>
-            <input type="password" id="password"></input>
-            <br></br>
-            <label>Password again:</label>
-            <br></br>
-            <input type="password" id="password_again"></input>
-            <br></br>
-            <label>Nickname:</label>
-            <br></br>
-            <input type="text" id="nickname"></input>
-            <br></br>
+            <div className="input-box">
+            <input type="text" id="username" placeholder='Username'></input>
+            </div>
+            <div className="input-box">
+            <input type="password" id="password" placeholder='Password'></input>
+            </div>
+              <div className="input-box">
+            <input type="password" id="password_again" placeholder='Password again'></input>
+              </div>
+                <div className="input-box">
+            <input type="text" id="nickname" placeholder='Nickname'></input>
+                </div>
             <label>Profile Image:</label>
             <br></br>
             <input
@@ -83,9 +78,10 @@ function Register() {
                 />
             )}
             <br></br>
-            <button type="button" onClick={submit}>
+            <button type="button" onClick={submit} className="button">
               Sign up
             </button>
+            <Link to='/' className="button" id="Login">Login</Link>
             <br></br>
             <div>
               {inputsLists.map((input) => (
@@ -93,8 +89,6 @@ function Register() {
               ))}
             </div>
           </form>
-        </header>
-        <Link to="/">Login</Link>
       </div>
   );
 }
