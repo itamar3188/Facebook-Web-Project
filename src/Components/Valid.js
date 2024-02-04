@@ -1,4 +1,3 @@
-import "./Valid.css"
 function Valid({username, password, password_again, nickname, imageType})
 {
     // Checking that all fields are filled in

@@ -1,7 +1,7 @@
 .wrapper {
     width: 420px;
     background: white;
-    color: black;
+   color: black;
     border-radius: 10px;
 }
 
@@ -9,7 +9,7 @@
     font-size: 36px;
     text-align: center;
 }
-.wrapper .input-box{
+input-box{
     position: relative;
     width: 90%;
     height: 50px;
