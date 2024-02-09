@@ -1,7 +1,7 @@
 import "./App.css"
 import Navbar from "../Components/feed/feed";
-import Post from "../Components/Post/Post";
-import posts from '../Components/Post/posts.json'
+import Post from "../Components/feed/Post/Post";
+import posts from '../data/posts.json'
 import {useState} from "react";
 
 function App() {
