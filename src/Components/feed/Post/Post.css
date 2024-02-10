@@ -1,0 +1,56 @@
+/* Style for the post container */
+#post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Style for the post content */
+#post-content {
+    background-color: lightgrey; /* Set a background color */
+    padding: 5px; /* Add some padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    width: 100vh;
+    height: 50vh;
+    border: 1px solid black;
+}
+#img {
+    image-resolution: normal;
+    image-rendering: auto;
+}
+#user {
+    text-decoration: underline;
+}
+#profile {
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+}
+#user_id {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+#buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    padding-top: 150px;
+}
+#like {
+   width: 150px;
+    background-color: #007bff;
+    padding: 5px;
+}
+#comments{
+    width: 150px;
+    background-color: #007bff;
+}
+#share {
+    width: 150px;
+    background-color: #007bff;
+}
+
