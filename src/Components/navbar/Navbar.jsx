@@ -1,6 +1,6 @@
-import {ReactComponent as Facebook} from "./facebook.svg";
-import {ReactComponent as Image} from "./person-circle.svg";
-import {ReactComponent as Search} from "./search.svg";
+import {ReactComponent as Facebook} from "../Assest/facebook.svg";
+import {ReactComponent as Image} from "../Assest/person-circle.svg";
+import {ReactComponent as Search} from "../Assest/search.svg";
 import './Navbar.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap/dist/css/bootstrap.css'
