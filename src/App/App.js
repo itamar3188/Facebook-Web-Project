@@ -1,20 +1,22 @@
 import "./App.css"
-import Navbar from "../Components/feed/feed";
-import Post from "../Components/Post/Post";
-import posts from '../Components/Post/posts.json'
-import {useState} from "react";
+import Feed from "../Components/feed/Feed";
+import {createContext, useState} from "react";
+
+
+export const ThemeContext = createContext(null);
 
 function App() {
-    const [postList, setPost] = useState(posts);
+    const [theme, setTheme] = useState("light");
+
+    const toggleTheme = () => {
+        setTheme((curr) => (curr==='light' ? 'dark': 'light'))
+    }
     return (
-        <span>
-            <Navbar/>
-            {
-                postList.map((post) =>
-                    <Post {...post} />
-                        )
-            }
-        </span>
+        <ThemeContext.Provider value={{theme, toggleTheme}}>
+            <div className="App" id={theme}>
+                <Feed/>
+            </div>
+        </ThemeContext.Provider>
     );
 }
 

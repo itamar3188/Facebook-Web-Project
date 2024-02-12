@@ -1,5 +1,5 @@
 import Valid from "./Valid";
-import inputs from "./data/db.json"
+import inputs from "../../data/db.json"
 import {useState} from "react";
 
 function Register() {

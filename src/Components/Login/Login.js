@@ -1,10 +1,10 @@
 import React from "react";
 // import { Link } from "react-router-dom"; // Assuming you are using react-router-dom for navigation
 import './Login.css';
-import user_icon from './Assest/person.png';
-import password_icon from './Assest/password.png';
+import user_icon from '../Assest/person.png';
+import password_icon from '../Assest/password.png';
 
-const LoginForm = () => {
+function LoginForm() {
     return (
         <div className='wrapper'>
             <h1>Login</h1>
@@ -35,5 +35,4 @@ const LoginForm = () => {
         </div>
     );
 };
-
 export default LoginForm;

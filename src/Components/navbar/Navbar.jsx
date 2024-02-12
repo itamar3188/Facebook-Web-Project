@@ -1,12 +1,18 @@
 import {ReactComponent as Facebook} from "./facebook.svg";
 import {ReactComponent as Image} from "./person-circle.svg";
 import {ReactComponent as Search} from "./search.svg";
-import './feed.css'
+import './Navbar.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap/dist/css/bootstrap.css'
+import {ThemeContext} from "../../App/App";
+import {useContext} from "react";
+
+
 function Navbar() {
+    const {theme, toggleTheme} = useContext(ThemeContext);
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-primary-subtle" id="navbar">
+
+        <nav className="navbar navbar-expand-lg navbar-light bg-primary-subtle" data-bs-theme={theme}>
             <div className="container-fluid">
                 <Facebook/>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -26,9 +32,13 @@ function Navbar() {
                                     <div className="form-check form-switch">
                                         <input className="form-check-input"
                                                type="checkbox"
-                                               id="switch"/>
+                                               role="switch"
+                                               id="switch"
+                                               onChange={toggleTheme}
+                                               checked={theme=== 'dark'}
+                                            />
                                         <label id="switchLabel" className="form-check-label">
-                                            light/dark
+                                            {theme} mode
                                         </label>
                                     </div>
                                 </li>
