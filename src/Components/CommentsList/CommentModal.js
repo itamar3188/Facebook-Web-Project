@@ -1,8 +1,9 @@
 import Comment from "../Comment/Comment";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import com from "../../data/comments.json";
-
+import {ThemeContext} from "../../App/App";
 function Comments({username}) {
+    const {theme} = useContext(ThemeContext)
     const [commentList, setComment] = useState(com);
     const [input, setInput] = useState('')
 
@@ -36,14 +37,15 @@ function Comments({username}) {
                         }
                     </div>
                     <div className="modal-footer">
-                        <form onSubmit={addComment} className="form-control">
+                        <form onSubmit={addComment} className="form-control hstack gap-0">
                             <input className="form-control form-control-sm"
                                    type="text"
                                    placeholder="add comment"
                                    value= {input}
                                    onChange={(e) => setInput(e.target.value)}
                                    aria-label="form-control-sm" required/>
-                            <button className="btn btn-success" type="submit">add
+                            <button className="btn btn-success" type="submit">
+                                add
                             </button>
                         </form>
                     </div>

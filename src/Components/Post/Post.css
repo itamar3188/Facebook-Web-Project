@@ -62,5 +62,6 @@
     width: 150px;
     background-color: #007bff;
 }
-
-/* Theme-specific styles */
+#user {
+    text-decoration: underline;
+}

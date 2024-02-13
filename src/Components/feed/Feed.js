@@ -1,34 +1,30 @@
 import Navbar from "../navbar/Navbar";
-import Post from "../Post/Post";
-import posts from '../../data/posts.json'
-import {useContext, useState} from "react";
-import PostForm from "../PostForm";
+import PostForm from "../postForm/PostForm";
 import './feed.css'
-import {ThemeContext} from "../../App/App";
+import {useState} from "react";
+import Posts from "../postList/Posts";
+import Allpost from '../../data/posts.json'
 
 function Feed({username}) {
-    const [postList, setPost] = useState(posts);
-    const {theme} = useContext(ThemeContext)
-
-    const handleSubmit = (text, file) => {
-        const newPost = {
-            id: Date.now(),
-            name: "user1",
-            text,
-            image: file,
-        };
-        setPost([newPost, ...posts]);
+    const [posts, setPosts] = useState(Allpost)
+    const addPost = (newPost) => {
+        setPosts([newPost, ...posts,]);
     };
+    const updatePost = (postId, updatedPost) => {
+        setPosts((prevPosts) =>
+            prevPosts.map((post) => (post.id === postId ? updatedPost : post))
+        );
+    };
+    const handleDeletePost = (postID) => {
+        setPosts(posts.filter((post) => post.id !== postID))
+    }
     return (
         <feed>
             <Navbar/>
-            <div id="feed">
-                <PostForm onSubmit={handleSubmit}/>
-                {
-                    postList.map((post, index) =>
-                        <Post key={index} post={post} />
-                    )
-                }
+            <div className="vstack gap-1" id="feed">
+                <PostForm addPost={addPost} username={"user1"}/>
+                <Posts posts={posts} updatePost={updatePost}
+                       deletePost={handleDeletePost} username={username}/>
             </div>
         </feed>
     );

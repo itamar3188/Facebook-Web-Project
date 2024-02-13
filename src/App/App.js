@@ -14,7 +14,7 @@ function App() {
     return (
         <ThemeContext.Provider value={{theme, toggleTheme}}>
             <div className="App" id={theme}>
-                <Feed/>
+                <Feed username="user1"/>
             </div>
         </ThemeContext.Provider>
     );
