@@ -13,6 +13,8 @@
     background: white;
     color: black;
     border-radius: 25px;
+    margin-top: 50px;
+    margin-left: 80vh;
 }
 #login {
     padding: 10px;

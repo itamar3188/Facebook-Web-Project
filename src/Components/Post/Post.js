@@ -8,8 +8,8 @@ import {ThemeContext} from "../../App/App";
 import EditPost from "../postForm/EditPost";
 import {ReactComponent as Options} from "../Assest/three-dots.svg";
 
-function Post({ post, updatePost, deletePost }) {
-    const { theme } = useContext(ThemeContext);
+function Post({post, updatePost, deletePost}) {
+    const {theme} = useContext(ThemeContext);
     const [liked, setLiked] = useState("#000000");
     const [editing, setEditing] = useState(false);
     const [isHidden, setHiddenObject] = useState(true);
@@ -47,7 +47,7 @@ function Post({ post, updatePost, deletePost }) {
     }
 
     return (
-        <post id="post">
+        <div id="post">
             <div className="card border-black" id="post"
                  data-bs-theme={theme}>
                 <div className="card-body" id="post-content">
@@ -56,25 +56,28 @@ function Post({ post, updatePost, deletePost }) {
                         <img src={post.profilePic}
                              className="rounded-circle p-1" id="profile"
                              alt=""/>
-                        <h6 className="p-1 fw-bold" id="user">{post.username}</h6>
+                        <h6 className="p-1 fw-bold"
+                            id="user">{post.username}</h6>
                         {isHidden &&
-                        <div className="btn-group dropend ms-auto p-1">
-                            <button type="button"
-                                    className="dropdown-toggle btn"
-                                    data-bs-toggle="dropdown">
-                                <Options/>
-                            </button>
-                            <ul className="dropdown-menu">
-                                <li onClick={handleEdit}
-                                    type="button" className="dropdown-item">
-                                    edit
-                                </li>
-                                <li onClick={handleDelete}
-                                    type="button" className="dropdown-item">
-                                    delete
-                                </li>
-                            </ul>
-                        </div>
+                            <div className="btn-group dropend ms-auto p-1">
+                                <button type="button"
+                                        className="dropdown-toggle btn"
+                                        data-bs-toggle="dropdown">
+                                    <Options/>
+                                </button>
+                                <ul className="dropdown-menu">
+                                    <li onClick={handleEdit}
+                                        type="button"
+                                        className="dropdown-item">
+                                        edit
+                                    </li>
+                                    <li onClick={handleDelete}
+                                        type="button"
+                                        className="dropdown-item">
+                                        delete
+                                    </li>
+                                </ul>
+                            </div>
                         }
                     </div>
                     {editing ? (
@@ -105,7 +108,8 @@ function Post({ post, updatePost, deletePost }) {
                         <CommentsIcon/>
                         comments
                     </button>
-                    <Comments comments={comments} addComment={addComment}/>
+                    <Comments comments={comments} addComment={addComment}
+                              postId={post.id}/>
                     <button onClick={handleButtonClick} type="button"
                             className="btn" id="like">
                         <Like style={{fill: liked}}/>
@@ -113,7 +117,7 @@ function Post({ post, updatePost, deletePost }) {
                     </button>
                 </div>
             </div>
-        </post>
+        </div>
     )
         ;
 

@@ -62,7 +62,7 @@ function PostForm({addPost}) {
                         accept="image/*"
                         required
                     />
-                    <button className="btn btn-primary float-end" type="submit">
+                    <button className="btn btn-primary float-end w-auto" type="submit">
                         publish
                     </button>
                 </div>

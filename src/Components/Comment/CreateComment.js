@@ -1,5 +1,5 @@
 import {useContext, useState} from "react";
-import {ThemeContext} from "../App/App";
+import {ThemeContext} from "../../App/App";
 
 function CreateComment({addComment}) {
     const {theme} = useContext(ThemeContext)
@@ -24,7 +24,7 @@ function CreateComment({addComment}) {
                    value={text}
                    onChange={(e) => setText(e.target.value)}
                    aria-label="form-control-sm" required/>
-            <button className="btn btn-success" type="submit">
+            <button className="btn btn-success w-auto" type="submit">
                 add
             </button>
         </form>

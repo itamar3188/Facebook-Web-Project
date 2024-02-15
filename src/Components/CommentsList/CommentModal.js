@@ -1,7 +1,7 @@
-import CreateComment from "../CreateComment";
+import CreateComment from "../Comment/CreateComment";
 import Comment from "../Comment/Comment";
 
-function Comments({comments, addComment}) {
+function Comments({comments, addComment, postId}) {
     return (
         <div className="modal fade" id="staticBackdrop"
              data-bs-backdrop="static" data-bs-keyboard="false"

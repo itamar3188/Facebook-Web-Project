@@ -1,6 +1,6 @@
 import './Post.css'
 import '../../../data/posts.json'
-import picture from '../../Assest/flower.jpeg'
+import {ReactComponent as picture} from "../../Assest/person-circle.svg";
 import {useState} from "react";
 import {ReactComponent as Like} from "../../Assest/like.svg";
 import Comments from '../CommentsList/Comments';

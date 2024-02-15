@@ -6,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap/dist/css/bootstrap.css'
 import {ThemeContext} from "../../App/App";
 import {useContext} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 
 function Navbar() {
