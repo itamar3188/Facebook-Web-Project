@@ -9,7 +9,7 @@ Itamar's Contribution: The Signup Screen
 Itamar has developed the signup screen with a focus on simplifying the registration process. This adaptation encourages new users to join the community with ease, facilitating account creation and immediate engagement with the web application.
 
 Yedidya's Contribution: The Feed Screen
-Yuval has redesigned the feed screen for the web, creating a dynamic and interactive hub where users can view, share, and interact with content. This screen is the heart of our application.
+Yedidya has redesigned the feed screen for the web, creating a dynamic and interactive hub where users can view, share, and interact with content. This screen is the heart of our application.
 
 Collaborative Design Efforts
 
