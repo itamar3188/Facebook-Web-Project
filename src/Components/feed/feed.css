@@ -5,3 +5,10 @@
     justify-content: center;
     padding: 5px;
 }
+
+.light {
+    background-color: lightseagreen;
+}
+.dark {
+    background-color: black;
+}

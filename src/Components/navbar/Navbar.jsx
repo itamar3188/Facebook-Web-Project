@@ -6,10 +6,17 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap/dist/css/bootstrap.css'
 import {ThemeContext} from "../../App/App";
 import {useContext} from "react";
+import {Link, useNavigate} from "react-router-dom";
 
 
 function Navbar() {
     const {theme, toggleTheme} = useContext(ThemeContext);
+    const navigate = useNavigate()
+
+    const logout = (e) => {
+        e.preventDefault()
+        navigate('/');
+    }
     return (
 
         <nav
@@ -51,7 +58,7 @@ function Navbar() {
                                 <hr className="dropdown-divider"/>
                             </li>
                             <li>
-                                <button className="dropdown-item" id="log-out"
+                                <button onClick={logout} className="dropdown-item" id="log-out"
                                         type="button">
                                     <p className="text-white">log-out</p>
                                 </button>
