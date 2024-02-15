@@ -1,0 +1,67 @@
+#post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Style for the post content */
+#post-content {
+    padding: 5px; /* Add some padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    width: 100vh;
+    height: auto;
+    border: 1px solid black;
+}
+
+/* Style for the user profile */
+#profile {
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+}
+
+/* Style for the user information container */
+#user_id {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+/* Style for the buttons container */
+#buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    padding: 10px; /* Adjust the padding to position buttons */
+}
+
+#img {
+    width: 90vh;
+    height: 60vh;
+}
+
+/* Style for the like button */
+#like {
+    width: 150px;
+    background-color: #007bff;
+    margin-left: 10px;
+}
+
+/* Style for the comments button */
+#comments {
+    width: 150px;
+    background-color: #007bff;
+    margin-left: 10px;
+}
+
+/* Style for the share button */
+#share {
+    width: 150px;
+    background-color: #007bff;
+}
+#user {
+    text-decoration: underline;
+}

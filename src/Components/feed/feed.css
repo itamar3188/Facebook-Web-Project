@@ -1,8 +1,14 @@
-#setting
-{
-    margin-left: 5px;
+#feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
 }
-#log-out
-{
-    background-color: darkred;
+
+.light {
+    background-color: lightseagreen;
+}
+.dark {
+    background-color: black;
 }
