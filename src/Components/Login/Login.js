@@ -14,7 +14,7 @@ function Login() {
     const check = (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
         if (username === 'User1' && password === 'User1') {
-            navigate('/Feed', {username : username}); // Navigate to the feed screen if username and password are correct
+            navigate('/Feed', {state:{username : username}}); // Navigate to the feed screen if username and password are correct
 
         } else {
             alert('Incorrect username or password!'); // Alert the user if credentials are incorrect

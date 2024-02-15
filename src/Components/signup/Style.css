@@ -38,17 +38,17 @@ input-box{
 }
 
 .button {
-    width: 50%;
+    width: 30%; /* Reduced from 50% to make the button narrower */
     text-align: center;
     background-color: #007bff; /* Your preferred background color */
     color: #fff; /* Your preferred text color */
-    padding: 30px; /* Adjust padding as needed */
+    padding: 10px; /* Reduced from 30px to decrease the button's size */
     border: none;
-    border-radius: 30px; /* Optional: Add rounded corners */
+    border-radius: 2px; /* Optional: Add rounded corners */
     cursor: pointer;
     text-decoration: none;
     margin: 5px;
-    font-size: 20px;
+    font-size: 16px; /* Reduced from 20px to decrease the text size */
 }
 
 .button:hover {

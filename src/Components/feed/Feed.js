@@ -12,8 +12,13 @@ function Feed() {
     const [posts, setPosts] = useState(Allpost)
     const {theme} = useContext(ThemeContext)
     const navigate = useNavigate();
-    const location = useLocation();
-    const {username} = location.state || {};
+    const {state} = useLocation()
+    useEffect(() => {
+        if (!state) {
+            navigate(-1);
+        }
+    }, [state, navigate]);
+    const username = state ? state.username : null
     const addPost = (newPost) => {
         console.log(posts.length)
         setPosts((posts) => [{
@@ -27,11 +32,7 @@ function Feed() {
             }, ...posts]
         );
     };
-    useEffect(() => {
-        if(!username) {
-            navigate('/')
-        }
-    },[username, navigate])
+
     const updatePost = (postId, updatedPost) => {
         setPosts((prevPosts) => {
             const newPosts = [...prevPosts];
