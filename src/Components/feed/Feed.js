@@ -17,7 +17,6 @@ function Feed() {
         if (!state) {
             navigate(-1);
         }
-
     }, [state, navigate]);
     const username = state ? state.username : null
     const addPost = (newPost) => {
