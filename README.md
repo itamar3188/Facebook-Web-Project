@@ -1,70 +1,22 @@
-# Getting Started with Create React FeedScreen
+Development Team and Contributions
 
-This project was bootstrapped with [Create React FeedScreen](https://github.com/facebook/create-react-app).
+This is the project of Itamar, Yedidya, and Yuval.
 
-## Available Scripts
+Yuval's Contribution: The Login Screen
+Yuval has adapted the login screen for the web, ensuring a secure and user-friendly interface. Users can log in by entering the username  and a password "User1".
 
-In the project directory, you can run:
+Itamar's Contribution: The Signup Screen
+Itamar has developed the signup screen with a focus on simplifying the registration process. This adaptation encourages new users to join the community with ease, facilitating account creation and immediate engagement with the web application.
 
-### `npm start`
+Yedidya's Contribution: The Feed Screen
+Yuval has redesigned the feed screen for the web, creating a dynamic and interactive hub where users can view, share, and interact with content. This screen is the heart of our application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Collaborative Design Efforts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The transition to a web application also saw the team coming together to ensure a cohesive and responsive design across all screens. 
 
-### `npm test`
+Accessing the Application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The web application is accessible through any modern web browser, embodying the team's capability to leverage web development technologies to create an accessible and scalable platform. 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React FeedScreen documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web FeedScreen
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Users can log in with the username and password "User1" to get into social media feed.
