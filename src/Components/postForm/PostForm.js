@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
 import './PostForm.css'
 
-function PostForm({addPost, username, profilePic}) {
+function PostForm({addPost}) {
     const [text, setText] = useState("");
     const [img, setImageURL] = useState("");
     const [imageFile, setImageFile] = useState(null);
@@ -12,7 +12,6 @@ function PostForm({addPost, username, profilePic}) {
     const handleText = (e) => {
         setText(e.target.value)
     }
-
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -29,7 +28,10 @@ function PostForm({addPost, username, profilePic}) {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newPost = {username, text, img, profilePic};
+        const newPost = {
+            text,
+            img,
+        };
         setText("");
         setImageURL("");
         addPost(newPost);

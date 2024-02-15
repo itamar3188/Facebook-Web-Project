@@ -1,15 +1,17 @@
-import './Comment.css'
-import {ThemeContext} from "../../App/App";
-import {useContext} from "react";
-function Comment({name, body}) {
-    const {theme} = useContext(ThemeContext)
-    return (
-        <comment>
-            <div id="comment">
-                <h6 id="userName">{name}:</h6>
-                <text >{body}</text>
+import React from 'react';
+import './Comment.css';
+
+class Comment extends React.Component {
+    render() {
+        const { text, username } = this.props;
+
+        return (
+            <div className="card-body" id="comment">
+                <h6 className="username" id="userName">{username}:</h6>
+                <p className="text">{text}</p>
             </div>
-        </comment>
-    );
-};
+        );
+    }
+}
+
 export default Comment;

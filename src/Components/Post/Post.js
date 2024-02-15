@@ -8,11 +8,23 @@ import {ThemeContext} from "../../App/App";
 import EditPost from "../postForm/EditPost";
 import {ReactComponent as Options} from "../Assest/three-dots.svg";
 
-function Post({post, updatePost, deletePost, username}) {
-    const {theme} = useContext(ThemeContext)
-    const [liked, setLiked] = useState('#000000');
-    const [editing, setEditing] = useState(false)
-    const [isHidden, setHiddenObject] = useState(true)
+function Post({ post, updatePost, deletePost }) {
+    const { theme } = useContext(ThemeContext);
+    const [liked, setLiked] = useState("#000000");
+    const [editing, setEditing] = useState(false);
+    const [isHidden, setHiddenObject] = useState(true);
+    const [comments, setComments] = useState(post.comments);
+
+
+    const addComment = (comment) => {
+        const newComment = {
+            username: "user",
+            id: comment.id,
+            text: comment.text
+        }
+        setComments([...comments, newComment]);
+    };
+
     const handleButtonClick = () => {
         const newIconColor = liked === '#000000' ? '#7eccec' : '#000000';
         setLiked(newIconColor)
@@ -93,7 +105,7 @@ function Post({post, updatePost, deletePost, username}) {
                         <CommentsIcon/>
                         comments
                     </button>
-                    <Comments username={username}/>
+                    <Comments comments={comments} addComment={addComment}/>
                     <button onClick={handleButtonClick} type="button"
                             className="btn" id="like">
                         <Like style={{fill: liked}}/>

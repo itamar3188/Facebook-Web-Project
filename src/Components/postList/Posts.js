@@ -2,12 +2,13 @@ import Post from "../Post/Post";
 
 
 function Posts({posts, updatePost, deletePost , username}) {
+
     return (
         <div className="posts">
             {
                 posts.map((post) => (
-                    <Post id={post.id} post={post} updatePost={updatePost}
-                          deletePost={deletePost} username={username}/>
+                    <Post post={post} updatePost={updatePost}
+                          deletePost={deletePost} key={post.id}/>
                 ))
             }
         </div>

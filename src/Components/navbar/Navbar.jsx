@@ -12,7 +12,9 @@ function Navbar() {
     const {theme, toggleTheme} = useContext(ThemeContext);
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-primary-subtle" data-bs-theme={theme}>
+        <nav
+            className="navbar navbar-expand-lg navbar-light bg-primary-subtle sticky-top"
+            data-bs-theme={theme}>
             <div className="container-fluid">
                 <Facebook/>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -26,7 +28,8 @@ function Navbar() {
                         >
                             <Image/>
                         </button>
-                        <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul className="dropdown-menu"
+                            aria-labelledby="navbarDropdown">
                             <li>
                                 <li className="dropdown-item-text">
                                     <div className="form-check form-switch">
@@ -35,9 +38,10 @@ function Navbar() {
                                                role="switch"
                                                id="switch"
                                                onChange={toggleTheme}
-                                               checked={theme=== 'dark'}
-                                            />
-                                        <label id="switchLabel" className="form-check-label">
+                                               checked={theme === 'dark'}
+                                        />
+                                        <label id="switchLabel"
+                                               className="form-check-label">
                                             {theme} mode
                                         </label>
                                     </div>
@@ -47,7 +51,8 @@ function Navbar() {
                                 <hr className="dropdown-divider"/>
                             </li>
                             <li>
-                                <button className="dropdown-item" id="log-out" type="button">
+                                <button className="dropdown-item" id="log-out"
+                                        type="button">
                                     <p className="text-white">log-out</p>
                                 </button>
                             </li>
@@ -60,7 +65,8 @@ function Navbar() {
                             <Search/>
                         </button>
                     </div>
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <input className="form-control me-2" type="search"
+                           placeholder="Search" aria-label="Search"/>
                 </form>
             </div>
         </nav>
