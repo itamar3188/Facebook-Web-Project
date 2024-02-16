@@ -8,7 +8,7 @@ function Posts({posts, updatePost, deletePost , username}) {
             {
                 posts.map((post) => (
                     <Post post={post} updatePost={updatePost}
-                          deletePost={deletePost} key={post.id}/>
+                          deletePost={deletePost} username={username} key={post.id}/>
                 ))
             }
         </div>

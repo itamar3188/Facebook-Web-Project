@@ -3,7 +3,6 @@ import PostForm from "../postForm/PostForm";
 import './feed.css'
 import List from '../menu/ListMenu'
 import {useContext, useEffect, useState} from "react";
-import {ReactComponent as Profile} from "../Assest/person-circle.svg";
 import Posts from "../postList/Posts";
 import Allpost from '../../data/posts.json'
 import {ThemeContext} from "../../App/App";
@@ -12,10 +11,9 @@ import {useLocation, useNavigate} from "react-router-dom";
 function Feed() {
     const [posts, setPosts] = useState(Allpost)
     const {theme} = useContext(ThemeContext)
-    const [counter, addOne] = useState(10)
+    const [counter, addOne] = useState(9)
     const navigate = useNavigate();
     const {state} = useLocation()
-    const url = Profile.src
     useEffect(() => {
         if (!state) {
             navigate(-1);
@@ -26,7 +24,7 @@ function Feed() {
         setPosts((posts) => [{
                 id: counter + 1,
                 username: username,
-                profilePic: url,
+                profilePic: newPost.profilePic,
                 text: newPost.text,
                 img: newPost.img,
                 time: new Date().toISOString(),
@@ -53,7 +51,7 @@ function Feed() {
         <Navbar/>
         <List/>
         <div className="vstack gap-2" id="feed">
-            <PostForm addPost={addPost} username={"user1"}/>
+            <PostForm addPost={addPost} username={username}/>
             <Posts posts={posts} updatePost={updatePost}
                    deletePost={handleDeletePost}
                    username={username}/>

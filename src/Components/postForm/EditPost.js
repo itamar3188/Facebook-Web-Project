@@ -66,10 +66,10 @@ function EditPostForm({post, updatePost, cancel}) {
                     {img && <img src={img} alt="Post"
                                  className="figure-img img-fluid rounded"/>}
                 </figure>
-                    <button className="btn btn-primary float-end" type="submit">
+                    <button className="btn btn-primary float-end w-auto" type="submit">
                         save changes
                     </button>
-                    <button className="btn btn-secondary float-end me-2"
+                    <button className="btn btn-secondary btn-outline-danger float-end me-2 w-auto"
                             type="button" onClick={handleCancel}>
                         cancel
                     </button>

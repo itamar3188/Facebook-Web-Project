@@ -1,16 +1,19 @@
 import {useContext, useState} from "react";
 import {ThemeContext} from "../../App/App";
 
-function CreateComment({addComment}) {
+function CreateComment({addComment, username}) {
     const {theme} = useContext(ThemeContext)
     const [text, setText] = useState('')
+    const [counter, addOne] = useState(0)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const newComment = {
-            username: "user",
-            text
+            username: username,
+            text,
+            id: counter
         }
+        addOne(counter + 1)
         addComment(newComment)
         setText('')
     }

@@ -2,6 +2,7 @@ import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
 import './PostForm.css'
+import ProfilePic from "../Assest/person-circle.svg";
 
 function PostForm({addPost}) {
     const [text, setText] = useState("");
@@ -9,7 +10,8 @@ function PostForm({addPost}) {
     const [imageFile, setImageFile] = useState(null);
     const {theme} = useContext(ThemeContext);
     const formRef = useRef();
-    const handleText = (e) => {
+
+     const handleText = (e) => {
         setText(e.target.value)
     }
     const handleImageChange = (e) => {
@@ -29,6 +31,7 @@ function PostForm({addPost}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newPost = {
+            ProfilePic,
             text,
             img,
         };

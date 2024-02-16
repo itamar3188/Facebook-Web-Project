@@ -1,3 +1,4 @@
+import './Valid.css'
 function Valid({username, password, password_again, nickname, imageType})
 {
     // Checking that all fields are filled in
@@ -5,7 +6,7 @@ function Valid({username, password, password_again, nickname, imageType})
         password_again === "" || nickname === "" || imageType === "")
     {
         return (
-            <h1>All fields are required.</h1>
+            <h6 id="text">All fields are required.</h6>
         );
     }
     // Validity check for username
@@ -13,22 +14,22 @@ function Valid({username, password, password_again, nickname, imageType})
     if(!usernamePattern.test(username))
     {
         return (
-            <h1>Username must be 6-10 characters without special characters.</h1>
+            <h6 id="text">Username must be 6-10 characters without special characters.</h6>
         );
     }
     // Validity check for password
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,14}$/;
     if(!passwordPattern.test(password)) {
         return (
-            <h1>Password must be 8-14 characters with at least one uppercase,
-                one lowercase, and one number, without special characters.</h1>
+            <h6 id="text">Password must be 8-14 characters with at least one uppercase,
+                one lowercase, and one number, without special characters.</h6>
         );
     }
     // Checking whether the two passwords are the same
     if(password !== password_again)
     {
         return (
-            <h1>The passwords you typed are not the same.</h1>
+            <h6 id="text">The passwords you typed are not the same.</h6>
         );
     }
     // Validity check for nickname
@@ -36,7 +37,7 @@ function Valid({username, password, password_again, nickname, imageType})
     if(!nicknamePattern.test(nickname))
     {
         return (
-            <h1>Nickname must be 4-8 characters without special characters.</h1>
+            <h6 id="text">Nickname must be 4-8 characters without special characters.</h6>
         );
     }
     // Validity check for image
@@ -44,12 +45,12 @@ function Valid({username, password, password_again, nickname, imageType})
     if(!imageFilePattern.test(imageType))
     {
         return (
-            <h1>Please select a valid image file.</h1>
+            <h6 id="text">Please select a valid image file.</h6>
         );
     }
     // If everything is fine, the registration was successful
     return (
-        <h1 id= "success"> The registration was successful!</h1>
+        <h3 id="success"> The registration was successful!</h3>
     );
 }
 export default Valid;

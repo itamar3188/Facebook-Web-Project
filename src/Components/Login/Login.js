@@ -14,7 +14,7 @@ function Login() {
     const check = (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
         if (username === 'User1' && password === 'User1') {
-            navigate('/Feed', {state:{username : username}}); // Navigate to the feed screen if username and password are correct
+            navigate('/Feed', {state: {username: username}}); // Navigate to the feed screen if username and password are correct
 
         } else {
             alert('Incorrect username or password!'); // Alert the user if credentials are incorrect
@@ -23,39 +23,46 @@ function Login() {
 
     return (
         <div className="mask">
-            <img src={Fakebook} alt="logo"/>
-            <div className="wrapper">
-                <h1>Log-in</h1>
-                <form onSubmit={check} className="form-control-lg"
-                      id="login">
-                    <input type="text" id="username" name="username"
-                           placeholder='Username' required
-                           value={username}
-                           onChange={(e) => setUsername(e.target.value)}/>
-                    <label className="form-check-label"
-                           htmlFor="username">
-                        <img src={user_icon} alt="User Icon"/>
-                    </label>
-                    <input type="password" id="password"
-                           name="password"
-                           placeholder='Password' required
-                           value={password}
-                           onChange={(e) => setPassword(e.target.value)}/>
-                    <label className="form-check-label"
-                           htmlFor="password">
-                        <img src={password_icon}
-                             alt="Password Icon"/>
-                    </label>
-                    <button type="submit"
-                            className="btn btn-primary">Login
-                    </button>
-                    <Link to='/Register'
-                          className="btn btn-success w-100"
-                          id="Register">Register</Link>
-                </form>
+            <div className="container text-center">
+                <div className="row align-items-center" id="loginPage">
+                    <div className='col'>
+                        <img src={Fakebook} alt="logo"/>
+                    </div>
+                    <div className="col">
+                        <div className="card" id="wrapper">
+                            <h1>Log-in</h1>
+                            <form onSubmit={check} className="form-control-lg"
+                                  id="login">
+                                <input type="text" id="username" name="username"
+                                       placeholder='Username' required
+                                       value={username}
+                                       onChange={(e) => setUsername(e.target.value)}/>
+                                <label className="form-check-label"
+                                       htmlFor="username">
+                                    <img src={user_icon} alt="User Icon"/>
+                                </label>
+                                <input type="password" id="password"
+                                       name="password"
+                                       placeholder='Password' required
+                                       value={password}
+                                       onChange={(e) => setPassword(e.target.value)}/>
+                                <label className="form-check-label"
+                                       htmlFor="password">
+                                    <img src={password_icon}
+                                         alt="Password Icon"/>
+                                </label>
+                                <button type="submit"
+                                        className="btn btn-primary">Login
+                                </button>
+                                <Link to='/Register'
+                                      className="btn btn-success w-100"
+                                      id="Register">Register</Link>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
-
 export default Login;

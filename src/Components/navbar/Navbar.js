@@ -1,4 +1,4 @@
-import {ReactComponent as Facebook} from "../Assest/facebook.svg";
+import Logo from "../Assest/fakebookLogo.svg";
 import {ReactComponent as Image} from "../Assest/person-circle.svg";
 import {ReactComponent as Search} from "../Assest/search.svg";
 import './Navbar.css'
@@ -23,7 +23,7 @@ function Navbar() {
             className="navbar navbar-expand-lg navbar-light bg-primary-subtle sticky-top"
             data-bs-theme={theme}>
             <div className="container-fluid">
-                <Facebook/>
+                <img src={Logo} alt="Logo" width="150" height="40" className="d-inline-block align-text-top"/>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item dropdown">
                         <button
@@ -33,7 +33,7 @@ function Navbar() {
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            <Image/>
+                            <Image id={theme}/>
                         </button>
                         <ul className="dropdown-menu"
                             aria-labelledby="navbarDropdown">

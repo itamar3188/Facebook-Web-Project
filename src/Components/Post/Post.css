@@ -40,7 +40,7 @@
 
 #img {
     width: 90vh;
-    height: 60vh;
+    height: auto;
 }
 
 /* Style for the like button */
@@ -64,4 +64,10 @@
 }
 #user {
     text-decoration: underline;
+}
+#light {
+    fill: black;
+}
+#dark {
+    fill: white;
 }

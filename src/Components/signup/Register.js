@@ -3,6 +3,7 @@ import inputs from "../../data/db.json";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import "./Style.css";
+import Fakebook from "../Assest/fakebook.png";
 
 function Register() {
     const [inputsLists, setInputs] = useState(inputs);
@@ -22,8 +23,8 @@ function Register() {
             img.onload = () => {
                 const canvas = document.createElement("canvas");
                 const ctx = canvas.getContext("2d");
-                canvas.width = 176;
-                canvas.height = 176;
+                canvas.width = 54;
+                canvas.height = 54;
                 ctx.drawImage(img, 0, 0, 176, 176);
 
                 setImagePreview(canvas.toDataURL());
@@ -43,69 +44,80 @@ function Register() {
             "nickname": document.getElementById("nickname").value,
             "imageType": selectedImage?.type || ""
         };
-        setInputs([input,...inputsLists]);
+        setInputs([input]);
     };
 
     return (
         <div className="mask">
-            <div className="wrapper">
-                <form onSubmit={submit} className="needs-validation" noValidate>
-                    <div className="mb-3">
-                        <label htmlFor="username"
-                               className="form-label">username</label>
-                        <input className="form-control" type="text"
-                               id="username"
-                               placeholder='Username' required/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="password"
-                               className="form-label">password</label>
-                        <input className="form-control" type="password"
-                               id="password"
-                               placeholder='Password' required/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="password"
-                               className="form-label">password twice</label>
-                        <input className="form-control" type="password"
-                               id="password_again"
-                               placeholder='Password again' required/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor='nickname' className="form-label">display
-                            name</label>
-                        <input className="form-control" type="text"
-                               id="nickname"
-                               placeholder='Nickname' required/>
-                    </div>
-                    <div className="d-flex justify-content-betweenmb-3">
-                        <label className="form-label">Profile Image:</label>
-                        <input className="form-control" type="file"
-                               id="formfile" accept="image/*"
-                               onChange={handleImageChange} required/>
-                        {imagePreview && (
-                            <img
-                                src={imagePreview}
-                                alt="Selected"
-                                style={{maxWidth: "100%", maxHeight: "100%"}}
-                            />
-                        )}
-                    </div>
-                    <div className="d-flex justify-content-between">
-                        <button type="submit" className="btn btn-primary w-25">
-                            Sign up
-                        </button>
-                        <p><a href="../Login"
-                              className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                            <Link to='/'>Login</Link>
-                        </a></p>
-                    </div>
-                    <div>
-                        {inputsLists.map((input) => (
-                            <Valid {...input} />
-                        ))}
-                    </div>
-                </form>
+            <div className="d-flex justify-content-around">
+                <img src={Fakebook} alt="logo" height={100} id="logo"/>
+                <div className="card" id="wrapper">
+                    <form className="needs-validation" noValidate>
+                        <div className="mb-3">
+                            <label htmlFor="username"
+                                   className="form-label m-1">username</label>
+                            <input className="form-control" type="text"
+                                   id="username"
+                                   placeholder='Username' required/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password"
+                                   className="form-label m-1">password</label>
+                            <input className="form-control" type="password"
+                                   id="password"
+                                   placeholder='Password' required/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password"
+                                   className="form-label m-1">password
+                                twice</label>
+                            <input className="form-control" type="password"
+                                   id="password_again"
+                                   placeholder='Password again' required/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor='nickname'
+                                   className="form-label m-1">display
+                                name</label>
+                            <input className="form-control" type="text"
+                                   id="nickname"
+                                   placeholder='Nickname' required/>
+                        </div>
+                        <div className="d-flex justify-content-betweenmb-3">
+                            <label htmlFor="formfile"
+                                   className="form-label mb-1">Profile
+                                Image:</label>
+                            <input className="form-control" type="file"
+                                   id="formfile" accept="image/*"
+                                   onChange={handleImageChange} required/>
+                            {imagePreview && (
+                                <img
+                                    src={imagePreview}
+                                    alt="Selected"
+                                    style={{
+                                        maxWidth: "100%",
+                                        maxHeight: "100%"
+                                    }}
+                                />
+                            )}
+                        </div>
+                        <div className="d-flex justify-content-between">
+                            <button onClick={submit} type="button"
+                                    className="btn btn-primary w-25">
+                                Sign up
+                            </button>
+                            <p><a href="../Login"
+                                  className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                <Link to='/'>Login</Link>
+                            </a></p>
+                        </div>
+                        <div>
+                            {inputsLists.map((input) => (
+                                <Valid {...input} />
+                            ))}
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
