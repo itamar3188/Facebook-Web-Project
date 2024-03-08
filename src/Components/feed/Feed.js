@@ -14,11 +14,13 @@ function Feed() {
     const [counter, addOne] = useState(9)
     const navigate = useNavigate();
     const {state} = useLocation()
+
     useEffect(() => {
         if (!state) {
             navigate(-1);
         }
     }, [state, navigate]);
+
     const username = state ? state.username : null
     const addPost = (newPost) => {
         setPosts((posts) => [{
@@ -52,9 +54,7 @@ function Feed() {
         <List/>
         <div className="vstack gap-2" id="feed">
             <PostForm addPost={addPost} username={username}/>
-            <Posts posts={posts} updatePost={updatePost}
-                   deletePost={handleDeletePost}
-                   username={username}/>
+            <Posts/>
         </div>
         </body>
     )

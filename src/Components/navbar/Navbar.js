@@ -20,7 +20,7 @@ function Navbar() {
     return (
 
         <nav
-            className="navbar navbar-expand-lg navbar-light bg-primary-subtle sticky-top"
+            className="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top"
             data-bs-theme={theme}>
             <div className="container-fluid">
                 <img src={Logo} alt="Logo" width="150" height="40" className="d-inline-block align-text-top"/>

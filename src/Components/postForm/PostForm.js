@@ -11,6 +11,22 @@ function PostForm({addPost}) {
     const {theme} = useContext(ThemeContext);
     const formRef = useRef();
 
+    async function create() {
+        const id = 123
+        console.log('edit')
+        const formData = new FormData();
+        formData.append('display', 'user1');
+        formData.append('profile', ProfilePic);
+        formData.append('img', imageFile);
+        formData.append('text', text);
+        const newPost = await fetch('http://localhost:8989/users/' + id + '/posts', {
+            method: "POST",
+            headers: {
+                "Content-Type": "multipart/form-data"
+            },
+            body: formData
+        }).then(data => data.json());
+    }
      const handleText = (e) => {
         setText(e.target.value)
     }
@@ -20,32 +36,20 @@ function PostForm({addPost}) {
             const reader = new FileReader();
             reader.onload = (e) => {
                 setImageURL(e.target.result);
+                setImageFile(file)
             };
             reader.readAsDataURL(file);
-            setImageFile(file);
         } else {
             setImageURL("");
             setImageFile(null);
         }
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newPost = {
-            ProfilePic,
-            text,
-            img,
-        };
-        setText("");
-        setImageURL("");
-        addPost(newPost);
-        formRef.current.value = null;
-    };
+
 
     return (
-        <div className="">
-            <form onSubmit={handleSubmit}
-                  className="mb-3" data-bs-theme={theme}
-                  id="postMaker">
+        <div>
+            <form className="mb-3" data-bs-theme={theme}
+                  id="postMaker" onSubmit={create}>
                 <textarea
                     className="form-control"
                     rows="auto"

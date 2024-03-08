@@ -27,17 +27,20 @@ function EditPostForm({post, updatePost, cancel}) {
         }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const updatedPost = {
-            id: post.id,
-            username: post.username,
-            text,
-            img: img ||URL.createObjectURL(newImageFile),
-            profilePic : post.profilePic
-        };
-        updatePost(updatedPost);
-    };
+    async function edit() {
+        const id = 123
+        console.log('edit')
+        const editPost = await fetch('http://localhost:8989/users/' + id + '/posts/' + post._id, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                img: img,
+                text: text
+            })
+        }).then(data => data.json());
+    }
 
     const handleCancel = () => {
         cancel();
@@ -45,7 +48,7 @@ function EditPostForm({post, updatePost, cancel}) {
 
     return (
         <div className="edit-post-form">
-            <form onSubmit={handleSubmit} className="mb-3" data-bs-theme={theme}
+            <form onSubmit={edit} className="mb-3" data-bs-theme={theme}
                   id="editPostForm">
         <textarea
             className="form-control"

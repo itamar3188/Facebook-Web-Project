@@ -52,8 +52,15 @@ function Post({post, updatePost, deletePost, username}) {
         setEditing(false);
         setHiddenObject(true)
     };
-    const handleDelete = () => {
-        deletePost(post.id)
+    async function Delete() {
+        console.log("delete")
+        const id = 123
+        const dPost = await fetch('http://localhost:8989/users/' + id +'/posts/' + post._id, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(data => data.json());
     }
     const handleEdit = () => {
         setEditing(true)
@@ -100,7 +107,7 @@ function Post({post, updatePost, deletePost, username}) {
                                         className="dropdown-item">
                                         edit
                                     </li>
-                                    <li onClick={handleDelete}
+                                    <li onClick={Delete}
                                         type="button"
                                         className="dropdown-item">
                                         delete
