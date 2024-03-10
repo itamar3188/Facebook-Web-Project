@@ -12,22 +12,28 @@ function PostForm({addPost}) {
     const formRef = useRef();
 
     async function create() {
-        const id = 123
-        console.log('edit')
-        const formData = new FormData();
-        formData.append('display', 'user1');
-        formData.append('profile', ProfilePic);
-        formData.append('img', imageFile);
-        formData.append('text', text);
+        const id = 123;
+        console.log('edit');
+
+        const requestData = {
+            display: 'user1',
+            profile: ProfilePic,
+            img: imageFile,
+            text: text,
+        };
+
         const newPost = await fetch('http://localhost:8989/users/' + id + '/posts', {
             method: "POST",
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "application/json"
             },
-            body: formData
-        }).then(data => data.json());
+            body: JSON.stringify(requestData),
+        }).then(response => response.json());
+
+        console.log(newPost);
     }
-     const handleText = (e) => {
+
+    const handleText = (e) => {
         setText(e.target.value)
     }
     const handleImageChange = (e) => {
