@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
 
@@ -7,6 +7,7 @@ function EditPostForm({post, updatePost, cancel}) {
     const [img, setImageURL] = useState(post.img);
     const [newImageFile, setNewImageFile] = useState(null);
     const {theme} = useContext(ThemeContext);
+    const editRef = useRef();
 
     const handleText = (e) => {
         setText(e.target.value);

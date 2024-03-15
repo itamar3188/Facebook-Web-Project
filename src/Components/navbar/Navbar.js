@@ -9,7 +9,7 @@ import {useContext} from "react";
 import {useNavigate} from "react-router-dom";
 
 
-function Navbar() {
+function Navbar(token) {
     const {theme, toggleTheme} = useContext(ThemeContext);
     const navigate = useNavigate()
 

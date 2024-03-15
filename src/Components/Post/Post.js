@@ -11,7 +11,7 @@ import {ReactComponent as ProfilePic} from '../Assest/person-circle.svg'
 import {ReactComponent as Share} from "../Assest/share.svg";
 
 
-function Post({post, updatePost, deletePost, username}) {
+function Post({post, updatePost, username}) {
     const {theme} = useContext(ThemeContext);
     const [liked, setLiked] = useState("#000000");
     const [share, pushedShare] = useState("#000000")
@@ -35,10 +35,6 @@ function Post({post, updatePost, deletePost, username}) {
         setComments([...comments, newComment]);
     };
 
-    const handleButtonClick = () => {
-        const newIconColor = liked === '#000000' ? '#7eccec' : '#000000';
-        setLiked(newIconColor)
-    };
     const handleShareButton = () => {
         const newIconColor = share === '#000000' ? '#61afdb' : '#000000';
         pushedShare(newIconColor)
@@ -52,15 +48,37 @@ function Post({post, updatePost, deletePost, username}) {
         setEditing(false);
         setHiddenObject(true)
     };
+    async function editPost() {
+        console.log("edit")
+        const id = 123
+        const newPost = await fetch('http://localhost:8989/api/posts/' + post._id, {
+            method: "patch",
+            headers: {
+                "Content-Type": "application/json",
+                'authorization': 'bearer ' + post.token
+            },
+        }).then(data => data.json());
+    }
     async function Delete() {
         console.log("delete")
         const id = 123
         const dPost = await fetch('http://localhost:8989/users/' + id +'/posts/' + post._id, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'authorization': 'bearer ' + post.token
             },
         }).then(data => data.json());
+    }
+    async function handleLike(){
+        console.log('like')
+        const liked = await fetch('http://localhost:8989/posts' + post.id, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                'authorization': 'bearer ' + post.token
+            }
+        })
     }
     const handleEdit = () => {
         setEditing(true)
@@ -102,7 +120,7 @@ function Post({post, updatePost, deletePost, username}) {
                                     <Options/>
                                 </button>
                                 <ul className="dropdown-menu">
-                                    <li onClick={handleEdit}
+                                    <li onClick={editPost}
                                         type="button"
                                         className="dropdown-item">
                                         edit
@@ -151,7 +169,7 @@ function Post({post, updatePost, deletePost, username}) {
                               deleteComment={handleDeleteComment}
                               updateComment={handleCommentEdit}
                               username={username}/>
-                    <button onClick={handleButtonClick} type="button"
+                    <button onClick={handleLike} type="button"
                             className="btn" id="like">
                         <Like style={{fill: liked}}/>
                         like

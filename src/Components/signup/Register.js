@@ -1,6 +1,6 @@
 import Valid from "./Valid";
 import inputs from "../../data/db.json";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import "./Style.css";
 import Fakebook from "../Assest/fakebook.png";
@@ -9,7 +9,8 @@ function Register() {
     const [inputsLists, setInputs] = useState(inputs);
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
-
+    const [imgURL, setURL] = useState('')
+    const formRef = useRef();
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         setSelectedImage(file);
@@ -19,7 +20,7 @@ function Register() {
         reader.onloadend = () => {
             const img = new Image();
             img.src = reader.result;
-
+            setURL(reader.result)
             img.onload = () => {
                 const canvas = document.createElement("canvas");
                 const ctx = canvas.getContext("2d");
@@ -30,20 +31,22 @@ function Register() {
                 setImagePreview(canvas.toDataURL());
             };
         };
-
         if (file) {
             reader.readAsDataURL(file);
         }
     };
 
-    const submit = () => {
+    const submit = (e) => {
+        e.preventDefault()
         const input = {
             "username": document.getElementById("username").value,
             "password": document.getElementById("password").value,
             "password_again": document.getElementById("password_again").value,
             "nickname": document.getElementById("nickname").value,
-            "imageType": selectedImage?.type || ""
+            "imageType": selectedImage?.type || "",
+            "imgURL": imgURL
         };
+        formRef.current = null;
         setInputs([input]);
     };
 
@@ -51,8 +54,8 @@ function Register() {
         <div className="mask">
             <div className="d-flex justify-content-around">
                 <img src={Fakebook} alt="logo" height={100} id="logo"/>
-                <div className="card" id="wrapper">
-                    <form className="needs-validation" noValidate>
+                <div className="card" id="card">
+                    <form className="needs-validation" noValidate onSubmit={submit}>
                         <div className="mb-3">
                             <label htmlFor="username"
                                    className="form-label m-1">username</label>
@@ -89,20 +92,21 @@ function Register() {
                                 Image:</label>
                             <input className="form-control" type="file"
                                    id="formfile" accept="image/*"
-                                   onChange={handleImageChange} required/>
+                                   onChange={handleImageChange} required
+                                   ref={formRef} />
                             {imagePreview && (
                                 <img
                                     src={imagePreview}
                                     alt="Selected"
                                     style={{
-                                        maxWidth: "100%",
-                                        maxHeight: "100%"
+                                        maxWidth: "25%",
+                                        maxHeight: "25%"
                                     }}
                                 />
                             )}
                         </div>
                         <div className="d-flex justify-content-between">
-                            <button onClick={submit} type="button"
+                            <button type="submit"
                                     className="btn btn-primary w-25">
                                 Sign up
                             </button>
@@ -113,8 +117,9 @@ function Register() {
                         </div>
                         <div>
                             {inputsLists.map((input) => (
-                                <Valid {...input} />
-                            ))}
+                                <Valid {...input}/>
+                            ))
+                            }
                         </div>
                     </form>
                 </div>

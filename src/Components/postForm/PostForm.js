@@ -4,21 +4,21 @@ import {ThemeContext} from "../../App/App";
 import './PostForm.css'
 import ProfilePic from "../Assest/person-circle.svg";
 
-function PostForm({addPost}) {
+function PostForm() {
     const [text, setText] = useState("");
     const [img, setImageURL] = useState("");
-    const [imageFile, setImageFile] = useState(null);
     const {theme} = useContext(ThemeContext);
     const formRef = useRef();
 
-    async function create() {
+    async function create(e) {
+        e.preventDefault()
         const id = 123;
-        console.log('edit');
-
+        console.log('create');
+        console.log(img)
         const requestData = {
             display: 'user1',
             profile: ProfilePic,
-            img: imageFile,
+            img: img,
             text: text,
         };
 
@@ -29,7 +29,7 @@ function PostForm({addPost}) {
             },
             body: JSON.stringify(requestData),
         }).then(response => response.json());
-
+        formRef.current = null
         console.log(newPost);
     }
 
@@ -40,14 +40,10 @@ function PostForm({addPost}) {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = (e) => {
-                setImageURL(e.target.result);
-                setImageFile(file)
-            };
-            reader.readAsDataURL(file);
-        } else {
-            setImageURL("");
-            setImageFile(null);
+            reader.onload = () => {
+                setImageURL(reader.result)
+            }
+            reader.readAsDataURL(file)
         }
     };
 
