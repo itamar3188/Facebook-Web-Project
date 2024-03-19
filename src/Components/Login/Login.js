@@ -11,11 +11,22 @@ function Login() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const check = (event) => {
-        event.preventDefault(); // Prevent the form from refreshing the page
-        if (username === 'User1' && password === 'User1') {
-            navigate('/Feed', {state: {username: username}}); // Navigate to the feed screen if username and password are correct
-
+    async function login(e){
+        console.log("login")
+        e.preventDefault()
+        const user = await fetch('http://localhost:8989/api/token', {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        const u = await user.json()
+        if(u) {
+            navigate('/Feed', {state: u.user})
         } else {
             alert('Incorrect username or password!'); // Alert the user if credentials are incorrect
         }
@@ -31,7 +42,7 @@ function Login() {
                     <div className="col">
                         <div className="card" id="wrapper">
                             <h1>Log-in</h1>
-                            <form onSubmit={check} className="form-control-lg"
+                            <form onSubmit={login} className="form-control-lg"
                                   id="login">
                                 <input type="text" id="username" name="username"
                                        placeholder='Username' required

@@ -2,11 +2,12 @@ body {
     background-color: aliceblue;
 }
 
-#wrapper {
+#card {
     width: 420px;
     background: white;
     color: black;
     border-radius: 25px;
+    margin-top: 20vh;
 }
 
 .wrapper h1 {

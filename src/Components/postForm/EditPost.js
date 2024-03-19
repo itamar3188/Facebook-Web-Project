@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
 
-function EditPostForm({post, updatePost, cancel}) {
+function EditPostForm({post, updatePost, cancel, user}) {
     const [text, setText] = useState(post.text);
     const [img, setImageURL] = useState(post.img);
     const [newImageFile, setNewImageFile] = useState(null);
@@ -27,19 +27,20 @@ function EditPostForm({post, updatePost, cancel}) {
         }
     };
 
-    async function edit() {
-        const id = 123
+    async function edit(e) {
+        e.preventDefault()
         console.log('edit')
-        const editPost = await fetch('http://localhost:8989/users/' + id + '/posts/' + post._id, {
+        const editPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts/' + post._id, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "authorization": "bearer " + user.token
             },
             body: JSON.stringify({
                 img: img,
                 text: text
             })
-        }).then(data => data.json());
+        })
     }
 
     const handleCancel = () => {

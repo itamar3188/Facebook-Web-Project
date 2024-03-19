@@ -1,5 +1,4 @@
 import Logo from "../Assest/fakebookLogo.svg";
-import {ReactComponent as Image} from "../Assest/person-circle.svg";
 import {ReactComponent as Search} from "../Assest/search.svg";
 import './Navbar.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
@@ -9,9 +8,10 @@ import {useContext} from "react";
 import {useNavigate} from "react-router-dom";
 
 
-function Navbar() {
+function Navbar(user) {
     const {theme, toggleTheme} = useContext(ThemeContext);
     const navigate = useNavigate()
+    console.log(user.user)
 
     const logout = (e) => {
         e.preventDefault()
@@ -33,7 +33,7 @@ function Navbar() {
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            <Image id={theme}/>
+                            <img src={user.user.profileImage} alt="" width={35} height={35} id="profilePic"/>
                         </button>
                         <ul className="dropdown-menu"
                             aria-labelledby="navbarDropdown">

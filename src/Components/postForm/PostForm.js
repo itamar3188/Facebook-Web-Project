@@ -4,32 +4,32 @@ import {ThemeContext} from "../../App/App";
 import './PostForm.css'
 import ProfilePic from "../Assest/person-circle.svg";
 
-function PostForm({addPost}) {
+function PostForm(user) {
     const [text, setText] = useState("");
     const [img, setImageURL] = useState("");
-    const [imageFile, setImageFile] = useState(null);
     const {theme} = useContext(ThemeContext);
     const formRef = useRef();
+    console.log(user.user.profileImage)
 
-    async function create() {
-        const id = 123;
-        console.log('edit');
-
+    async function create(e) {
+        e.preventDefault()
+        console.log('create');
+        console.log(img)
         const requestData = {
-            display: 'user1',
-            profile: ProfilePic,
-            img: imageFile,
+            display: user.user.displayName,
+            profile: user.user.profileImage,
+            img: img,
             text: text,
         };
 
-        const newPost = await fetch('http://localhost:8989/users/' + id + '/posts', {
+        const newPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(requestData),
         }).then(response => response.json());
-
+        formRef.current = null
         console.log(newPost);
     }
 
@@ -40,14 +40,10 @@ function PostForm({addPost}) {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = (e) => {
-                setImageURL(e.target.result);
-                setImageFile(file)
-            };
-            reader.readAsDataURL(file);
-        } else {
-            setImageURL("");
-            setImageFile(null);
+            reader.onload = () => {
+                setImageURL(reader.result)
+            }
+            reader.readAsDataURL(file)
         }
     };
 
