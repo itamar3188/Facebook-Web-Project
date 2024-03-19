@@ -3,3 +3,10 @@
     flex-direction: column;
     margin-top: 69px;
 }
+#deleteButton {
+    width: 30px;
+}
+#askForFriend {
+    width: 50px;
+    background-color: palegoldenrod;
+}
