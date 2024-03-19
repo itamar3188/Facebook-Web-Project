@@ -9,7 +9,6 @@ function PostForm(user) {
     const [img, setImageURL] = useState("");
     const {theme} = useContext(ThemeContext);
     const formRef = useRef();
-    console.log(user.user.profileImage)
 
     async function create(e) {
         e.preventDefault()

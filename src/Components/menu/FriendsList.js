@@ -49,7 +49,7 @@ function FriendsList(user) {
     }
 
     function isFriend(friendId) {
-        return user.user.friends.includes(friendId)
+        return user.user.friends.includes(String(friendId))
     }
 
     return (
