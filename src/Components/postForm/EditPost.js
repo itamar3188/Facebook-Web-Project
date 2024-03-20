@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
 
-function EditPostForm({post, updatePost, cancel}) {
+function EditPostForm({post, updatePost, cancel, user}) {
     const [text, setText] = useState(post.text);
     const [img, setImageURL] = useState(post.img);
     const [newImageFile, setNewImageFile] = useState(null);
     const {theme} = useContext(ThemeContext);
+    const editRef = useRef();
 
     const handleText = (e) => {
         setText(e.target.value);
@@ -27,17 +28,21 @@ function EditPostForm({post, updatePost, cancel}) {
         }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const updatedPost = {
-            id: post.id,
-            username: post.username,
-            text,
-            img: img ||URL.createObjectURL(newImageFile),
-            profilePic : post.profilePic
-        };
-        updatePost(updatedPost);
-    };
+    async function edit(e) {
+        e.preventDefault()
+        console.log('edit')
+        const editPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts/' + post._id, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "bearer " + user.token
+            },
+            body: JSON.stringify({
+                img: img,
+                text: text
+            })
+        })
+    }
 
     const handleCancel = () => {
         cancel();
@@ -45,7 +50,7 @@ function EditPostForm({post, updatePost, cancel}) {
 
     return (
         <div className="edit-post-form">
-            <form onSubmit={handleSubmit} className="mb-3" data-bs-theme={theme}
+            <form onSubmit={edit} className="mb-3" data-bs-theme={theme}
                   id="editPostForm">
         <textarea
             className="form-control"

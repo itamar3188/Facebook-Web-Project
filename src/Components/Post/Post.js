@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useState} from "react";
 import './Post.css'
 import {useContext} from "react";
 import {ReactComponent as Like} from "../Assest/like.svg";
@@ -7,38 +7,27 @@ import Comments from "../CommentsList/CommentModal";
 import {ThemeContext} from "../../App/App";
 import EditPost from "../postForm/EditPost";
 import {ReactComponent as Options} from "../Assest/three-dots.svg";
-import {ReactComponent as ProfilePic} from '../Assest/person-circle.svg'
 import {ReactComponent as Share} from "../Assest/share.svg";
 
 
-function Post({post, updatePost, deletePost, username}) {
+function Post({post, updatePost, user}) {
     const {theme} = useContext(ThemeContext);
     const [liked, setLiked] = useState("#000000");
     const [share, pushedShare] = useState("#000000")
     const [editing, setEditing] = useState(false);
-    const [isYourPost, setIsYourPost] = useState(false)
     const [isHidden, setHiddenObject] = useState(true);
     const [comments, setComments] = useState(post.comments);
 
-    useEffect(() => {
-        if (post.username === username) {
-            setIsYourPost(true)
-        }
-    }, [post.username, username])
 
     const addComment = (comment) => {
         const newComment = {
-            username: username,
+            username: user.username,
             id: comment.id,
             text: comment.text
         }
         setComments([...comments, newComment]);
     };
 
-    const handleButtonClick = () => {
-        const newIconColor = liked === '#000000' ? '#7eccec' : '#000000';
-        setLiked(newIconColor)
-    };
     const handleShareButton = () => {
         const newIconColor = share === '#000000' ? '#61afdb' : '#000000';
         pushedShare(newIconColor)
@@ -52,9 +41,34 @@ function Post({post, updatePost, deletePost, username}) {
         setEditing(false);
         setHiddenObject(true)
     };
-    const handleDelete = () => {
-        deletePost(post.id)
+
+    async function Delete() {
+        console.log("delete")
+        const dPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts/' + post._id, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                'authorization': 'bearer ' + user.token
+            },
+        }).then(data => data.json());
     }
+
+    async function handleLike() {
+        console.log('like')
+        const like = await fetch('http://localhost:8989/api/posts/' + post._id + '/likes', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'authorization': 'bearer ' + user.token
+            },
+            body: JSON.stringify({
+                id: user._id
+            })
+        })
+        const color = liked === '#000000' ? '#61afdb' : '#000000'
+        setLiked(color)
+    }
+
     const handleEdit = () => {
         setEditing(true)
         setHiddenObject(false)
@@ -76,18 +90,13 @@ function Post({post, updatePost, deletePost, username}) {
                  data-bs-theme={theme}>
                 <div className="card-body" id="post-content">
                     <div id="user_id"
-                          className="d-flex mb-3">
-                        {isYourPost ? (
-                            <ProfilePic id={theme}/>
-                        ) : (
+                         className="d-flex mb-3">
                         <img src={post.profilePic}
                              className="rounded-circle p-1" id="profile"
                              alt=""/>
-                            )
-                        }
                         <h6 className="p-1 fw-bold"
                             id="user">{post.username}</h6>
-                        {isHidden &&
+                        { post.username === user.displayName && isHidden &&
                             <div className="btn-group dropend ms-auto p-1">
                                 <button type="button"
                                         className="dropdown-toggle btn"
@@ -100,7 +109,7 @@ function Post({post, updatePost, deletePost, username}) {
                                         className="dropdown-item">
                                         edit
                                     </li>
-                                    <li onClick={handleDelete}
+                                    <li onClick={Delete}
                                         type="button"
                                         className="dropdown-item">
                                         delete
@@ -111,6 +120,7 @@ function Post({post, updatePost, deletePost, username}) {
                     </div>
                     {editing ? (
                         <EditPost post={post}
+                                  user={user}
                                   updatePost={handleUpdate}
                                   cancel={handleEditCancel}/>
                     ) : (
@@ -143,8 +153,8 @@ function Post({post, updatePost, deletePost, username}) {
                               postId={post.id}
                               deleteComment={handleDeleteComment}
                               updateComment={handleCommentEdit}
-                              username={username}/>
-                    <button onClick={handleButtonClick} type="button"
+                              username={user.username}/>
+                    <button onClick={handleLike} type="button"
                             className="btn" id="like">
                         <Like style={{fill: liked}}/>
                         like
@@ -153,7 +163,6 @@ function Post({post, updatePost, deletePost, username}) {
             </div>
         </div>
     )
-        ;
 
 }
 

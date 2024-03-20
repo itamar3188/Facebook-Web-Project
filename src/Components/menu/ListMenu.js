@@ -1,9 +1,11 @@
 import './ListMenu.css'
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
-function ListMenu() {
-    const [isActive, setIsActive] = useState(true)
-    const{theme} = useContext(ThemeContext)
+import FriendsList from "./FriendsList";
+
+function ListMenu(user) {
+    const {theme} = useContext(ThemeContext)
+
     return (
         <div className="list-group w-25 position-fixed" id="options"
              role="tablist" data-bs-theme={theme}>
@@ -13,9 +15,13 @@ function ListMenu() {
                 Home
             </a>
             <a className="list-group-item list-group-item-action"
+               type="button"
                data-bs-toggle="list"
+               data-bs-target="#offcanvasRight"
+               aria-controls="offcanvasRight"
                role="tab">
                 Friends
+                <FriendsList user={user.user}/>
             </a>
             <a className="list-group-item list-group-item-action"
                data-bs-toggle="list"

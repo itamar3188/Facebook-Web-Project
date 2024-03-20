@@ -5,7 +5,9 @@
     justify-content: center;
     padding: 5px;
 }
-
+#profilePic {
+    border-radius: 50%;
+}
 .light {
     background-color: lightseagreen;
 }
