@@ -13,7 +13,6 @@ function PostForm(user) {
     async function create(e) {
         e.preventDefault()
         console.log('create');
-        console.log(img)
         const requestData = {
             display: user.user.displayName,
             profile: user.user.profileImage,
@@ -29,7 +28,6 @@ function PostForm(user) {
             body: JSON.stringify(requestData),
         }).then(response => response.json());
         formRef.current = null
-        console.log(newPost);
     }
 
     const handleText = (e) => {

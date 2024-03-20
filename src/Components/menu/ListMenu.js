@@ -5,6 +5,7 @@ import FriendsList from "./FriendsList";
 
 function ListMenu(user) {
     const {theme} = useContext(ThemeContext)
+
     return (
         <div className="list-group w-25 position-fixed" id="options"
              role="tablist" data-bs-theme={theme}>

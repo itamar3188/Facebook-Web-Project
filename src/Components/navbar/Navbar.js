@@ -13,7 +13,6 @@ function Navbar(user) {
     const {theme, toggleTheme} = useContext(ThemeContext);
     const [requests, setRequests] = useState([])
     const navigate = useNavigate()
-    console.log(requests)
 
     useEffect(() => {
         async function fetchRequestsData() {
@@ -47,6 +46,7 @@ function Navbar(user) {
             const find = requests.filter(request => request._id !== friendId);
             const trying = user.user.friends_request.filter(request => request !== String(friendId))
             user.user.friends_request = trying
+            user.user.friends.push(String(friendId))
             setRequests(find)
         }
     }

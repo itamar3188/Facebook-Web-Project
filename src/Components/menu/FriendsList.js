@@ -4,6 +4,7 @@ import {ReactComponent as Trash} from "../Assest/trash.svg";
 function FriendsList(user) {
     const [friends, setFriends] = useState(user.user.friends)
     const [friendsData, setFriendsData] = useState([])
+    console.log(user.user)
 
     useEffect(() => {
         async function fetchFriendsData() {

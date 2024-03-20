@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useState} from "react";
 import './Post.css'
 import {useContext} from "react";
 import {ReactComponent as Like} from "../Assest/like.svg";
@@ -7,7 +7,6 @@ import Comments from "../CommentsList/CommentModal";
 import {ThemeContext} from "../../App/App";
 import EditPost from "../postForm/EditPost";
 import {ReactComponent as Options} from "../Assest/three-dots.svg";
-import {ReactComponent as ProfilePic} from '../Assest/person-circle.svg'
 import {ReactComponent as Share} from "../Assest/share.svg";
 
 
@@ -16,15 +15,9 @@ function Post({post, updatePost, user}) {
     const [liked, setLiked] = useState("#000000");
     const [share, pushedShare] = useState("#000000")
     const [editing, setEditing] = useState(false);
-    const [isYourPost, setIsYourPost] = useState(false)
     const [isHidden, setHiddenObject] = useState(true);
     const [comments, setComments] = useState(post.comments);
 
-    useEffect(() => {
-        if (post.username === user.username) {
-            setIsYourPost(true)
-        }
-    }, [post.username, user.username])
 
     const addComment = (comment) => {
         const newComment = {
@@ -98,17 +91,12 @@ function Post({post, updatePost, user}) {
                 <div className="card-body" id="post-content">
                     <div id="user_id"
                          className="d-flex mb-3">
-                        {isYourPost ? (
-                            <ProfilePic id={theme}/>
-                        ) : (
-                            <img src={post.profilePic}
-                                 className="rounded-circle p-1" id="profile"
-                                 alt=""/>
-                        )
-                        }
+                        <img src={post.profilePic}
+                             className="rounded-circle p-1" id="profile"
+                             alt=""/>
                         <h6 className="p-1 fw-bold"
                             id="user">{post.username}</h6>
-                        {isHidden &&
+                        { post.username === user.displayName && isHidden &&
                             <div className="btn-group dropend ms-auto p-1">
                                 <button type="button"
                                         className="dropdown-toggle btn"
