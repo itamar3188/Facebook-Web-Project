@@ -164,7 +164,6 @@ function Post({post, updatePost, user}) {
         </div>
     )
 
-
 }
 
 export default Post;

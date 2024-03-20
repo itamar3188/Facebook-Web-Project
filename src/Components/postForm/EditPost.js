@@ -7,6 +7,7 @@ function EditPostForm({post, updatePost, cancel, user}) {
     const [img, setImageURL] = useState(post.img);
     const [newImageFile, setNewImageFile] = useState(null);
     const {theme} = useContext(ThemeContext);
+    const editRef = useRef();
 
     const handleText = (e) => {
         setText(e.target.value);
