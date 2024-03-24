@@ -1,22 +1,15 @@
-Development Team and Contributions
 
-This is the project of Itamar, Yedidya, and Yuval.
+Part 3:
+Registration Requirements: When creating an account, choose a secure and strong password along with a unique username. If the chosen password or username does not meet security standards, the application will display a notification alerting you to this.
 
-Yuval's Contribution: The Login Screen
-Yuval has adapted the login screen for the web, ensuring a secure and user-friendly interface. Users can log in by entering the username  and a password "User1".
+Login and Registration: Both processes work with the server, ensuring secure access to your account.
 
-Itamar's Contribution: The Signup Screen
-Itamar has developed the signup screen with a focus on simplifying the registration process. This adaptation encourages new users to join the community with ease, facilitating account creation and immediate engagement with the web application.
+Content Interaction: The application now supports various content-related functionalities directly from the server.
 
-Yedidya's Contribution: The Feed Screen
-Yedidya has redesigned the feed screen for the web, creating a dynamic and interactive hub where users can view, share, and interact with content. This screen is the heart of our application.
+Viewing Posts: Users can view posts retrieved from the server, including the content of the posts and the usernames of the authors.
 
-Collaborative Design Efforts
+Adding Posts: You can now add new posts through the application, which will be uploaded to the server in real time.
 
-The transition to a web application also saw the team coming together to ensure a cohesive and responsive design across all screens. 
+Modifying and Deleting Posts: These features are restricted to the original authors of the posts. If you are the author, you have the ability to update or delete your posts as needed.
 
-Accessing the Application
-
-The web application is accessible through any modern web browser, embodying the team's capability to leverage web development technologies to create an accessible and scalable platform. 
-
-Users can log in with the username and password "User1" to get into social media feed.
+Adding friends and other additional options that are inside the application can be entered and seen.
