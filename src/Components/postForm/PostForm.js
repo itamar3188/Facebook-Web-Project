@@ -2,7 +2,9 @@ import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
 import './PostForm.css'
+import '../../config'
 import ProfilePic from "../Assest/person-circle.svg";
+import config from "../../config";
 
 function PostForm(user) {
     const [text, setText] = useState("");
@@ -20,7 +22,7 @@ function PostForm(user) {
             text: text,
         };
 
-        const newPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts', {
+        const newPost = await fetch('http://localhost:'+config.PORT+'/api/users/' + user._id + '/posts', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

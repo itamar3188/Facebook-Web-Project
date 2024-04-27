@@ -1,6 +1,8 @@
 import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
+import '../../config'
+import config from "../../config";
 
 function EditPostForm({post, updatePost, cancel, user}) {
     const [text, setText] = useState(post.text);
@@ -31,7 +33,7 @@ function EditPostForm({post, updatePost, cancel, user}) {
     async function edit(e) {
         e.preventDefault()
         console.log('edit')
-        const editPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts/' + post._id, {
+        const editPost = await fetch('http://localhost:'+config.PORT+'/api/users/' + user._id + '/posts/' + post._id, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

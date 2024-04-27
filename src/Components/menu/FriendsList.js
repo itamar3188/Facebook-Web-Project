@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import config from '../../config'
 import {ReactComponent as Trash} from "../Assest/trash.svg";
 
 function FriendsList(user) {
@@ -10,7 +11,7 @@ function FriendsList(user) {
         async function fetchFriendsData() {
             const fetchedFriendsData = await Promise.all(
                 friends.map(async (friendId) => {
-                    const res = await fetch('http://localhost:8989/api/users/' + friendId)
+                    const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + friendId)
                     return await res.json()
                 })
             );
@@ -22,7 +23,7 @@ function FriendsList(user) {
 
     async function unfriend(friend) {
         console.log('delete')
-        const res = await fetch('http://localhost:8989/api/users/' + user.user._id + '/friends/' + friend._id, {
+        const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + user.user._id + '/friends/' + friend._id, {
             method: "delete",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +37,7 @@ function FriendsList(user) {
 
     async function sendRequest(friend) {
         console.log("post")
-        const res = await fetch('http://localhost:8989/api/users/' + friend._id + '/friends', {
+        const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + friend._id + '/friends', {
             method: 'post',
             headers: {
                 "Content-Type": "application/json",

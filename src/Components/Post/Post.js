@@ -1,4 +1,5 @@
 import {useState} from "react";
+import config from '../../config'
 import './Post.css'
 import {useContext} from "react";
 import {ReactComponent as Like} from "../Assest/like.svg";
@@ -44,7 +45,7 @@ function Post({post, updatePost, user}) {
 
     async function Delete() {
         console.log("delete")
-        const dPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts/' + post._id, {
+        const dPost = await fetch('http://localhost:'+config.PORT+'/api/users/' + user._id + '/posts/' + post._id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +56,7 @@ function Post({post, updatePost, user}) {
 
     async function handleLike() {
         console.log('like')
-        const like = await fetch('http://localhost:8989/api/posts/' + post._id + '/likes', {
+        const like = await fetch('http://localhost:'+config.PORT+'/api/posts/' + post._id + '/likes', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

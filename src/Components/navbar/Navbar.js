@@ -1,4 +1,5 @@
 import Logo from "../Assest/fakebookLogo.svg";
+import config from '../../config'
 import {ReactComponent as Search} from "../Assest/search.svg";
 import {ReactComponent as Alerts} from "../Assest/envelope-paper.svg";
 import './Navbar.css'
@@ -18,7 +19,7 @@ function Navbar(user) {
         async function fetchRequestsData() {
             const fetchedFriendsData = await Promise.all(
                 user.user.friends_request.map(async (friendId) => {
-                    const res = await fetch('http://localhost:8989/api/users/' + friendId)
+                    const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + friendId)
                     return await res.json()
                 })
             );
@@ -35,7 +36,7 @@ function Navbar(user) {
 
     async function accept(friendId) {
         console.log('patch')
-        const res = await fetch('http://localhost:8989/api/users/' + user.user._id + '/friends/' + friendId, {
+        const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + user.user._id + '/friends/' + friendId, {
             method: 'PATCH',
             headers: {
                 "Content-Type": 'application/json',
@@ -53,7 +54,7 @@ function Navbar(user) {
 
     async function reject(friendId) {
         console.log('delete')
-        const res = await fetch('http://localhost:8989/api/users/' + user.user._id + '/friends/' + friendId, {
+        const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + user.user._id + '/friends/' + friendId, {
             method: 'delete',
             headers: {
                 "Content-Type": 'application/json',
