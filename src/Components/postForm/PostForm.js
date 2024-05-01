@@ -6,9 +6,22 @@ import '../../config'
 import ProfilePic from "../Assest/person-circle.svg";
 import config from "../../config";
 
+// Popup component
+function Popup({ message, onClose }) {
+    return (
+        <div className="popup">
+            <div className="popup-content">
+                <p>{message}</p>
+                <button onClick={onClose}>Close</button>
+            </div>
+        </div>
+    );
+}
+
 function PostForm(user) {
     const [text, setText] = useState("");
     const [img, setImageURL] = useState("");
+    const [errorMessage, setErrorMessage] = useState(""); // State for error message
     const {theme} = useContext(ThemeContext);
     const formRef = useRef();
 
@@ -29,12 +42,18 @@ function PostForm(user) {
             },
             body: JSON.stringify(requestData),
         }).then(response => response.json());
+
         formRef.current = null
+        if(newPost === null) {
+            // Set error message if newPost is null
+            setErrorMessage("Post couldn't be sent - bad link.");
+        }
     }
 
     const handleText = (e) => {
         setText(e.target.value)
     }
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -46,11 +65,11 @@ function PostForm(user) {
         }
     };
 
-
     return (
         <div>
-            <form className="mb-3" data-bs-theme={theme}
-                  id="postMaker" onSubmit={create}>
+
+
+            <form className="mb-3" data-bs-theme={theme} id="postMaker" onSubmit={create}>
                 <textarea
                     className="form-control"
                     rows="auto"
@@ -58,8 +77,7 @@ function PostForm(user) {
                     value={text}
                     placeholder="tell people what you think"
                     required
-                >
-                </textarea>
+                />
                 <div className="hstack gap-0">
                     <input
                         onChange={handleImageChange}
@@ -75,6 +93,10 @@ function PostForm(user) {
                     </button>
                 </div>
             </form>
+            {/* Popup for error message */}
+            {errorMessage && (
+                <Popup message={errorMessage} onClose={() => setErrorMessage("")} />
+            )}
         </div>
     );
 }
