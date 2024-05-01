@@ -1,6 +1,5 @@
-import React, {useRef, useState} from "react";
-import {useContext} from "react";
-import {ThemeContext} from "../../App/App";
+import React, { useRef, useState, useContext } from "react";
+import { ThemeContext } from "../../App/App";
 import './PostForm.css'
 import '../../config'
 import ProfilePic from "../Assest/person-circle.svg";
@@ -10,7 +9,7 @@ import config from "../../config";
 function Popup({ message, onClose }) {
     return (
         <div className="popup">
-            <div className="popup-content">
+            <div className="popup-content" style={{ color: 'red' }}>
                 <p>{message}</p>
                 <button onClick={onClose}>Close</button>
             </div>
@@ -22,11 +21,11 @@ function PostForm(user) {
     const [text, setText] = useState("");
     const [img, setImageURL] = useState("");
     const [errorMessage, setErrorMessage] = useState(""); // State for error message
-    const {theme} = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const formRef = useRef();
 
     async function create(e) {
-        e.preventDefault()
+        e.preventDefault();
         console.log('create');
         const requestData = {
             display: user.user.displayName,
@@ -35,7 +34,7 @@ function PostForm(user) {
             text: text,
         };
 
-        const newPost = await fetch('http://localhost:'+config.PORT+'/api/users/' + user._id + '/posts', {
+        const newPost = await fetch('http://localhost:' + config.PORT + '/api/users/' + user._id + '/posts', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -43,10 +42,15 @@ function PostForm(user) {
             body: JSON.stringify(requestData),
         }).then(response => response.json());
 
-        formRef.current = null
-        if(newPost === null) {
+        formRef.current = null;
+
+        if (newPost === null) {
             // Set error message if newPost is null
             setErrorMessage("Post couldn't be sent - bad link.");
+        } else {
+            // Clear error message if post is successfully created
+            setErrorMessage("");
+            // Optionally, you can perform any other actions here upon successful post creation
         }
     }
 
@@ -67,8 +71,6 @@ function PostForm(user) {
 
     return (
         <div>
-
-
             <form className="mb-3" data-bs-theme={theme} id="postMaker" onSubmit={create}>
                 <textarea
                     className="form-control"
