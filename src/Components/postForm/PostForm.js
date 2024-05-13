@@ -1,6 +1,5 @@
-import React, {useRef, useState} from "react";
-import {useContext} from "react";
-import {ThemeContext} from "../../App/App";
+import React, { useRef, useState, useContext } from "react";
+import { ThemeContext } from "../../App/App";
 import './PostForm.css'
 
 
@@ -11,7 +10,7 @@ function PostForm({user, addpost}) {
     const formRef = useRef(null);
 
     async function create(e) {
-        e.preventDefault()
+        e.preventDefault();
         console.log('create');
         const requestData = {
             display: user.displayName,
@@ -27,7 +26,6 @@ function PostForm({user, addpost}) {
             },
             body: JSON.stringify(requestData),
         }).then(response => response.json());
-        console.log(newPost)
         if(newPost === null) {
             // Set error message if newPost is null
             alert("there is a bad link. we can't allow you to publish it!")
