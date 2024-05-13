@@ -1,15 +1,15 @@
 import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
-import '../../config'
-import config from "../../config";
 
 function EditPostForm({post, updatePost, cancel, user}) {
     const [text, setText] = useState(post.text);
     const [img, setImageURL] = useState(post.img);
-    const [newImageFile, setNewImageFile] = useState(null);
+    const [, setNewImageFile] = useState(null);
+
     const {theme} = useContext(ThemeContext);
-    const editRef = useRef();
+    const textRef = useRef(post.text)
+    const imgRef = useRef(post.img)
 
     const handleText = (e) => {
         setText(e.target.value);
@@ -33,7 +33,7 @@ function EditPostForm({post, updatePost, cancel, user}) {
     async function edit(e) {
         e.preventDefault()
         console.log('edit')
-        const editPost = await fetch('http://localhost:'+config.PORT+'/api/users/' + user._id + '/posts/' + post._id, {
+        const edit = await fetch('http://localhost:8989/api/users/' + user._id + '/posts/' + post._id, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -44,9 +44,19 @@ function EditPostForm({post, updatePost, cancel, user}) {
                 text: text
             })
         })
+        if (await edit.json() === null) {
+            alert("there is a bad link. we can't allow you to publish it!")
+        } else {
+            const edited = post
+            edited.text = text
+            edited.img = img
+            updatePost(post._id, edited);
+        }
     }
 
     const handleCancel = () => {
+        textRef.current = post.text
+        imgRef.current = post.img
         cancel();
     };
 
@@ -58,6 +68,7 @@ function EditPostForm({post, updatePost, cancel, user}) {
             className="form-control"
             rows="auto"
             onChange={handleText}
+            ref={textRef}
             value={text}
             placeholder="tell people what you think"
             required
@@ -66,6 +77,7 @@ function EditPostForm({post, updatePost, cancel, user}) {
                     onChange={handleImageChange}
                     className="form-control"
                     id="editImageInput"
+                    ref={imgRef}
                     type="file"
                     accept="image/*"
                 />
@@ -73,16 +85,16 @@ function EditPostForm({post, updatePost, cancel, user}) {
                     {img && <img src={img} alt="Post"
                                  className="figure-img img-fluid rounded"/>}
                 </figure>
-                    <button className="btn btn-primary float-end w-auto" type="submit">
-                        save changes
-                    </button>
-                    <button className="btn btn-secondary btn-outline-danger float-end me-2 w-auto"
-                            type="button" onClick={handleCancel}>
-                        cancel
-                    </button>
+                <button id="save changes" className="btn btn-primary float-end w-auto" type="submit">
+                    save changes
+                </button>
+                <button className="btn btn-secondary btn-outline-danger float-end me-2 w-auto"
+                        type="button" onClick={handleCancel}>
+                    cancel
+                </button>
             </form>
         </div>
-);
+    );
 }
 
 export default EditPostForm;

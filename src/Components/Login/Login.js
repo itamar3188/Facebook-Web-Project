@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import config from '../../config'
 import '../signup/Style.css';
 import './Login.css'
 import user_icon from '../Assest/person-circle.svg';
@@ -15,7 +14,7 @@ function Login() {
     async function login(e){
         console.log("login")
         e.preventDefault()
-        const user = await fetch('http://localhost:'+config.PORT+'/api/token', {
+        const user = await fetch('http://localhost:8989/api/token', {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -25,11 +24,12 @@ function Login() {
                 password: password
             })
         })
+        console.log(user)
         const u = await user.json()
         if(u) {
             navigate('/Feed', {state: u.user})
         } else {
-            alert('Incorrect username or password!'); // Alert the user if credentials are incorrect
+            alert('Incorrect username or password!');
         }
     }
 

@@ -2,51 +2,38 @@ import React, {useRef, useState} from "react";
 import {useContext} from "react";
 import {ThemeContext} from "../../App/App";
 import './PostForm.css'
-import '../../config'
-import ProfilePic from "../Assest/person-circle.svg";
-import config from "../../config";
 
-// Popup component
-function Popup({ message, onClose }) {
-    return (
-        <div className="popup">
-            <div className="popup-content">
-                <p>{message}</p>
-                <button onClick={onClose}>Close</button>
-            </div>
-        </div>
-    );
-}
 
-function PostForm(user) {
+function PostForm({user, addpost}) {
     const [text, setText] = useState("");
     const [img, setImageURL] = useState("");
-    const [errorMessage, setErrorMessage] = useState(""); // State for error message
     const {theme} = useContext(ThemeContext);
-    const formRef = useRef();
+    const formRef = useRef(null);
 
     async function create(e) {
         e.preventDefault()
         console.log('create');
         const requestData = {
-            display: user.user.displayName,
-            profile: user.user.profileImage,
+            display: user.displayName,
+            profile: user.profileImage,
             img: img,
             text: text,
         };
 
-        const newPost = await fetch('http://localhost:'+config.PORT+'/api/users/' + user._id + '/posts', {
+        const newPost = await fetch('http://localhost:8989/api/users/' + user._id + '/posts', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(requestData),
         }).then(response => response.json());
-
-        formRef.current = null
+        console.log(newPost)
         if(newPost === null) {
             // Set error message if newPost is null
-            setErrorMessage("Post couldn't be sent - bad link.");
+            alert("there is a bad link. we can't allow you to publish it!")
+        } else {
+            formRef.current = null
+            addpost(newPost)
         }
     }
 
@@ -67,9 +54,7 @@ function PostForm(user) {
 
     return (
         <div>
-
-
-            <form className="mb-3" data-bs-theme={theme} id="postMaker" onSubmit={create}>
+            <form className="mb-3" data-bs-theme={theme} id="postMaker" onSubmit={create} ref={formRef}>
                 <textarea
                     className="form-control"
                     rows="auto"
@@ -81,22 +66,17 @@ function PostForm(user) {
                 <div className="hstack gap-0">
                     <input
                         onChange={handleImageChange}
-                        ref={formRef}
                         className="form-control"
                         id="imageInput"
                         type="file"
                         accept="image/*"
                         required
                     />
-                    <button className="btn btn-primary float-end w-auto" type="submit">
+                    <button className="btn btn-primary float-end w-auto" id="publish" type="submit">
                         publish
                     </button>
                 </div>
             </form>
-            {/* Popup for error message */}
-            {errorMessage && (
-                <Popup message={errorMessage} onClose={() => setErrorMessage("")} />
-            )}
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import {useState} from "react";
-import config from '../../config'
 import './Post.css'
 import {useContext} from "react";
 import {ReactComponent as Like} from "../Assest/like.svg";
@@ -11,7 +10,7 @@ import {ReactComponent as Options} from "../Assest/three-dots.svg";
 import {ReactComponent as Share} from "../Assest/share.svg";
 
 
-function Post({post, updatePost, user}) {
+function Post({post, updatePost, user, deletePost}) {
     const {theme} = useContext(ThemeContext);
     const [liked, setLiked] = useState("#000000");
     const [share, pushedShare] = useState("#000000")
@@ -38,25 +37,26 @@ function Post({post, updatePost, user}) {
         setHiddenObject(true)
     };
     const handleUpdate = (updatedPost) => {
-        updatePost(post.id, updatedPost);
         setEditing(false);
         setHiddenObject(true)
+        updatePost(post._id, updatedPost);
     };
 
     async function Delete() {
         console.log("delete")
-        const dPost = await fetch('http://localhost:'+config.PORT+'/api/users/' + user._id + '/posts/' + post._id, {
+        await fetch('http://localhost:8989/api/users/' + user._id + '/posts/' + post._id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 'authorization': 'bearer ' + user.token
             },
         }).then(data => data.json());
+        deletePost(post._id);
     }
 
     async function handleLike() {
         console.log('like')
-        const like = await fetch('http://localhost:'+config.PORT+'/api/posts/' + post._id + '/likes', {
+        await fetch('http://localhost:8989/api/posts/' + post._id + '/likes', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -65,7 +65,7 @@ function Post({post, updatePost, user}) {
             body: JSON.stringify({
                 id: user._id
             })
-        })
+        });
         const color = liked === '#000000' ? '#61afdb' : '#000000'
         setLiked(color)
     }

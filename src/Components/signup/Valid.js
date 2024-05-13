@@ -1,7 +1,4 @@
 import './Valid.css'
-import '../../config'
-import {useEffect} from "react";
-import config from "../../config";
 
 function Valid({username, password, password_again, nickname, imageType, imgURL}) {
 
@@ -50,7 +47,7 @@ function Valid({username, password, password_again, nickname, imageType, imgURL}
 
     async function createUser() {
         console.log("create")
-        await fetch('http://localhost:'+config.PORT+'/api/users', {
+        await fetch('http://localhost:8989/api/users', {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

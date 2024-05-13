@@ -1,12 +1,11 @@
 import Logo from "../Assest/fakebookLogo.svg";
-import config from '../../config'
 import {ReactComponent as Search} from "../Assest/search.svg";
 import {ReactComponent as Alerts} from "../Assest/envelope-paper.svg";
 import './Navbar.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap/dist/css/bootstrap.css'
 import {ThemeContext} from "../../App/App";
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 
@@ -19,7 +18,7 @@ function Navbar(user) {
         async function fetchRequestsData() {
             const fetchedFriendsData = await Promise.all(
                 user.user.friends_request.map(async (friendId) => {
-                    const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + friendId)
+                    const res = await fetch('http://localhost:8989/api/users/' + friendId)
                     return await res.json()
                 })
             );
@@ -27,7 +26,7 @@ function Navbar(user) {
         }
 
         fetchRequestsData();
-    }, []);
+    }, [user.user.friends_request]);
 
     const logout = (e) => {
         e.preventDefault()
@@ -36,7 +35,7 @@ function Navbar(user) {
 
     async function accept(friendId) {
         console.log('patch')
-        const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + user.user._id + '/friends/' + friendId, {
+        const res = await fetch('http://localhost:8989/api/users/' + user.user._id + '/friends/' + friendId, {
             method: 'PATCH',
             headers: {
                 "Content-Type": 'application/json',
@@ -45,8 +44,7 @@ function Navbar(user) {
         })
         if (res.ok) {
             const find = requests.filter(request => request._id !== friendId);
-            const trying = user.user.friends_request.filter(request => request !== String(friendId))
-            user.user.friends_request = trying
+            user.user.friends_request = user.user.friends_request.filter(request => request !== String(friendId))
             user.user.friends.push(String(friendId))
             setRequests(find)
         }
@@ -54,7 +52,7 @@ function Navbar(user) {
 
     async function reject(friendId) {
         console.log('delete')
-        const res = await fetch('http://localhost:'+config.PORT+'/api/users/' + user.user._id + '/friends/' + friendId, {
+        const res = await fetch('http://localhost:8989/api/users/' + user.user._id + '/friends/' + friendId, {
             method: 'delete',
             headers: {
                 "Content-Type": 'application/json',
@@ -63,8 +61,7 @@ function Navbar(user) {
         })
         if (res.ok) {
             const find = requests.filter(request => request._id !== friendId);
-            const trying = user.user.friends_request.filter(request => request !== String(friendId))
-            user.user.friends_request = trying
+            user.user.friends_request = user.user.friends_request.filter(request => request !== String(friendId))
             setRequests(find)
         }
     }
