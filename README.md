@@ -13,3 +13,6 @@ Adding Posts: You can now add new posts through the application, which will be u
 Modifying and Deleting Posts: These features are restricted to the original authors of the posts. If you are the author, you have the ability to update or delete your posts as needed.
 
 Adding friends and other additional options that are inside the application can be entered and seen.
+
+The wiki folder is in the TCP server repository:
+https://github.com/yuvalbarak8/server/tree/Yuval4/wiki
